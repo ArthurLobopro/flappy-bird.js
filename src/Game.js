@@ -1,14 +1,11 @@
+import { canvas, ctx, sprites } from "./components/render.js";
 import bird from "./components/Bird.js";
-
-const sprites = new Image()
-sprites.src = "./assets/sprites.png"
-
-const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext('2d')
+import chao from "./components/Chao.js";
 
 sprites.onload = () => {
     setInterval(() => {
         bird.draw()
         bird.toggle()
+        chao.draw()
     }, 500);
 }
