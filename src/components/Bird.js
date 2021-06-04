@@ -7,6 +7,8 @@ const bird = {
     height: 24,
     x: 0,
     y:0,
+    gravidade: 0.25,
+    vel: 0,
     sprites:[
         {
             sx:0,
@@ -21,6 +23,10 @@ const bird = {
             sy:52,
         }
     ],
+    att(){
+        this.y += (this.vel + this.gravidade)
+        this.vel += this.gravidade
+    },
     draw(){
         ctx.drawImage(
             sprites, //Imagem
