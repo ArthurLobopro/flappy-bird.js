@@ -5,10 +5,7 @@ const bird = {
     csy:0,
     width: 33,
     height: 24,
-    x: 0,
-    y:0,
     gravidade: 0.25,
-    vel: 0,
     sprites:[
         {
             sx:0,
@@ -42,7 +39,13 @@ const bird = {
         const nextIndex = currentIndex === 2 ? 0 : currentIndex+1
         this.csx = this.sprites[nextIndex].sx
         this.csy = this.sprites[nextIndex].sy
+    },
+    reset(){
+        this.x = 0
+        this.y = 0
+        this.vel = 0
     }
 }
+bird.reset()
 
 export default bird
