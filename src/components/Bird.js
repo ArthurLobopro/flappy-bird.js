@@ -1,11 +1,17 @@
 import { ctx, sprites } from "./render.js"
 
 const bird = {
-    csx:0,
-    csy:0,
+    csx: 0,
+    csy: 0,
     width: 33,
     height: 24,
     gravidade: 0.25,
+    currentSprite: 0,
+    lastSprite: 1,
+    render: 0,
+    x: 0,
+    y: 0,
+    vel: 0,
     sprites:[
         {
             sx:0,
@@ -32,17 +38,31 @@ const bird = {
             this.x,this.y, // Posição no canvas
             this.width, this.height // Largura e altura no canvas
         )
+        this.render++
+        if(this.render === 10){
+            bird.toggle()
+            this.render = 0
+        }
     },
     toggle(){
-        const { csx, csy } = this
-        const currentIndex = this.sprites.findIndex( ({sx,sy}) => sx === csx && sy === csy)
-        const nextIndex = currentIndex === 2 ? 0 : currentIndex+1
+        let nextIndex
+
+        if(this.currentSprite === 1){
+            if(this.lastSprite === 0) nextIndex = 2
+            if(this.lastSprite === 2) nextIndex = 0
+        }else{
+            nextIndex = 1
+        }
+
+        this.lastSprite = this.currentSprite
+        this.currentSprite = nextIndex
+
         this.csx = this.sprites[nextIndex].sx
         this.csy = this.sprites[nextIndex].sy
     },
     reset(){
-        this.x = 0
-        this.y = 0
+        this.x = 15
+        this.y = 15
         this.vel = 0
     }
 }
