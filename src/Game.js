@@ -4,6 +4,7 @@ import chao from "./components/Chao.js";
 import cenario from "./components/Cenario.js";
 import init from "./components/Init.js";
 import gameOver from "./components/GameOver.js"
+import audios from "./Audio.js"
 
 let telaAtual = {}
 const setTela = tela => telaAtual = tela
@@ -13,14 +14,19 @@ const telas = {
         render(){
             cenario.draw()
             chao.draw()
+            chao.att()
             bird.draw()
         },
         att(){
-            if(colizao()) return setTela(telas.gameOver)
+            if(colizao()) {
+                audios.hit.play()
+                return setTela(telas.gameOver)
+            }
             bird.att()
             this.render()
         },
         click(){
+            audios.pulo.play()
             bird.vel = - 5
         }
     },
