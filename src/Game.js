@@ -5,23 +5,34 @@ import cenario from "./components/Cenario.js";
 import init from "./components/Init.js";
 import gameOver from "./components/GameOver.js"
 import audios from "./Audio.js"
+import obstaculos from "./components/Obstaculos.js"
 
 let telaAtual = {}
 const setTela = tela => telaAtual = tela
 
 const telas = {
     mainGame: {
+        frame: 0,
         render(){
             cenario.draw()
             chao.draw()
             chao.att()
+            obstaculos.draw()
             bird.draw()
         },
         att(){
             if(colizao()) {
                 audios.hit.play()
+                obstaculos.reset()
                 return setTela(telas.gameOver)
             }
+            if(this.frame % 10 === 0){
+                bird.toggle()
+            }
+            if(this.frame % 150 === 0){
+                obstaculos.spaw()
+            }
+            this.frame++
             bird.att()
             this.render()
         },
@@ -31,6 +42,7 @@ const telas = {
         }
     },
     initGame:{
+        frame: 0,
         render(){
             telas.mainGame.render()
             init.draw()
@@ -39,7 +51,11 @@ const telas = {
             setTela(telas.mainGame)
         },
         att(){
+            if(this.frame % 10 === 0){
+                bird.toggle()
+            }
             this.render()
+            this.frame++
         }
     },
     gameOver:{
