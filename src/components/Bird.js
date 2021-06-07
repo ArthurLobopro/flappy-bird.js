@@ -8,7 +8,6 @@ const bird = {
     gravidade: 0.25,
     currentSprite: 0,
     lastSprite: 1,
-    render: 0,
     x: 0,
     y: 0,
     vel: 0,
@@ -38,11 +37,6 @@ const bird = {
             this.x,this.y, // Posição no canvas
             this.width, this.height // Largura e altura no canvas
         )
-        this.render++
-        if(this.render === 10){
-            bird.toggle()
-            this.render = 0
-        }
     },
     toggle(){
         let nextIndex
