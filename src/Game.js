@@ -15,9 +15,9 @@ const telas = {
         frame: 0,
         render(){
             cenario.draw()
+            obstaculos.draw()
             chao.draw()
             chao.att()
-            obstaculos.draw()
             bird.draw()
         },
         att(){
@@ -80,10 +80,14 @@ const renderGame = () => {
 }
 
 const colizao = () => {
+
     if(bird.y + bird.height + 1 >= chao.y){
         return true
     }
-    return false
+
+    return obstaculos.ativos.some( ({x,y}) => {
+        return bird.x + bird.width >= x && (bird.y <= y + obstaculos.height || bird.y >= y + obstaculos.height + obstaculos.espaco)
+    })
 }
 
 setTela(telas.initGame)
