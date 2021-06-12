@@ -5,7 +5,7 @@ const randInt = (min,max) => Math.floor(Math.random() * (max-min+1)) + min
 const obstaculos = {
     width: 52,
     height: 400,
-    espaco: 80,
+    espaco: 90,
     render: 0,
     sprites:{
         top: {
