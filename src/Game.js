@@ -6,9 +6,14 @@ import init from "./components/Init.js";
 import gameOver from "./components/GameOver.js"
 import audios from "./Audio.js"
 import obstaculos from "./components/Obstaculos.js"
+import "./Cheats.js"
 
 let telaAtual = {}
 const setTela = tela => telaAtual = tela
+
+const game = {
+    imortal: false
+}
 
 const telas = {
     mainGame: {
@@ -80,13 +85,14 @@ const renderGame = () => {
 }
 
 const colizao = () => {
+    if(game.imortal) return false
 
     if(bird.y + bird.height + 1 >= chao.y){
         return true
     }
 
     return obstaculos.ativos.some( ({x,y}) => {
-        return bird.x + bird.width >= x && (bird.y <= y + obstaculos.height || bird.y >= y + obstaculos.height + obstaculos.espaco)
+        return bird.x + bird.width >= x && (bird.y <= y + obstaculos.height || bird.y + bird.height >= y + obstaculos.height + obstaculos.espaco)
     })
 }
 
@@ -97,3 +103,5 @@ sprites.onload = renderGame
 window.onclick = () => {
     telaAtual.click?.()
 }
+
+export { game }
