@@ -41,9 +41,10 @@ const gameOver = {
 }
 const placar = {
     formatPontos: txt => String(txt).padStart(3, '0'),
-    draw({pontos,record}){
+    draw({pontos,record, medalha}){
         this.drawPoints(pontos)
         this.drawRecord(record)
+        this.drawMedalha(medalha)
     },
     drawRecord(record){
         ctx.font = '27px arial'
@@ -68,10 +69,10 @@ const placar = {
         const y = gameOver.y + 88
         const { sx, sy } = medalhas[type]
         const { width, height } = medalhas
-        tx.drawImage(
+        ctx.drawImage(
             sprites, //Imagem
             sx, sy, //Posição do Sprite atual
-            width,height, // Recorte feito no Sprite
+            width, height, // Recorte feito no Sprite
             x, y, // Posição no canvas
             width, height // Largura e altura no canvas
         )
