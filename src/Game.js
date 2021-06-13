@@ -129,6 +129,8 @@ const colizao = () => {
         return true
     }
 
+    if(bird.y < 0) return true
+
     return obstaculos.ativos
     .filter( ({x}) => x + obstaculos.width > bird.x)
     .some( ({x,y}) => {
