@@ -65,7 +65,7 @@ const placar = {
     },
     drawMedalha(type){
         const x = gameOver.x + 26
-        const y = gameOver.y + 41
+        const y = gameOver.y + 88
         const { sx, sy } = medalhas[type]
         const { width, height } = medalhas
         tx.drawImage(
