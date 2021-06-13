@@ -112,7 +112,9 @@ const colizao = () => {
     }
 
     return obstaculos.ativos.some( ({x,y}) => {
-        return bird.x + bird.width >= x && (bird.y <= y + obstaculos.height || bird.y + bird.height >= y + obstaculos.height + obstaculos.espaco)
+        const bateuEmCima = bird.y <= y + obstaculos.height
+        const bateuEmBaixo = bird.y + bird.height >= y + obstaculos.height + obstaculos.espaco
+        return bird.x + bird.width >= x && ( bateuEmCima || bateuEmBaixo)
     })
 }
 
