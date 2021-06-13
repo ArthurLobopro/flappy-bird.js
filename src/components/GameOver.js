@@ -24,7 +24,7 @@ const medalhas = {
 
 const gameOver = {
     width: 228,
-    height: 162,
+    height: 205,
     sy: 152,
     sx: 133,
     y: 65,
