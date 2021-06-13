@@ -46,7 +46,7 @@ const telas = {
             bird.draw()
         },
         att(){
-            if(colizao()) {
+            if(colisao()) {
                 if(game.pontos > game.record){
                     game.record = game.pontos
                     localStorage.record = game.pontos
@@ -122,7 +122,7 @@ const renderGame = () => {
     requestAnimationFrame(renderGame)
 }
 
-const colizao = () => {
+const colisao = () => {
     if(game.imortal) return false
 
     if(bird.y + bird.height + 1 >= chao.y){
