@@ -12,8 +12,28 @@ let telaAtual = {}
 const setTela = tela => telaAtual = tela
 
 const game = {
-    imortal: false
+    imortal: false,
+    pontos: 0,
+    record: 0,
+    medalha: 'iron',
+    reset(){
+        this.imortal = false
+        this.pontos = 0
+        this.medalha = 'iron'
+    },
+    renderPlacar(){
+        const formatPontos = txt => String(txt).padStart(3, '0')
+        ctx.font = '27px arial'
+        ctx.fillStyle = 'black'
+        ctx.textAlign = 'right'
+        ctx.textBaseline = 'top'
+        const y = 10
+        const x = canvas.width - 10
+        ctx.fillText(formatPontos(this.pontos), x, y)
+    }
 }
+
+game.record = localStorage.record ?? 0
 
 const telas = {
     mainGame: {
