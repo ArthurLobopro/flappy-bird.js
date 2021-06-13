@@ -3,7 +3,7 @@ import bird from "./components/Bird.js";
 import chao from "./components/Chao.js";
 import cenario from "./components/Cenario.js";
 import init from "./components/Init.js";
-import gameOver from "./components/GameOver.js"
+import { gameOver, placar} from "./components/GameOver.js"
 import audios from "./Audio.js"
 import obstaculos from "./components/Obstaculos.js"
 import "./Cheats.js"
@@ -47,12 +47,20 @@ const telas = {
         },
         att(){
             if(colizao()) {
+                if(game.pontos > game.record){
+                    game.record = game.pontos
+                    localStorage.record = game.pontos
+                }
                 audios.hit.play()
+                this.render()
                 obstaculos.reset()
                 return setTela(telas.gameOver)
             }
             if(this.frame % 10 === 0){
                 bird.toggle()
+            }
+            if(this.frame % 25 === 0){
+                game.pontos++
             }
             if(this.frame % 150 === 0){
                 obstaculos.spaw()
@@ -60,6 +68,7 @@ const telas = {
             this.frame++
             bird.att()
             this.render()
+            game.renderPlacar()
         },
         click(){
             audios.pulo.play()
@@ -86,18 +95,18 @@ const telas = {
     gameOver:{
         render(){
             gameOver.draw()
+            placar.draw(game)
         },
         att(){
             this.render()
         },
         click(){
+            game.reset()
             setTela(telas.initGame)
             bird.reset()
         }
     }
 }
-
-
 
 const renderGame = () => {
     telaAtual.att()
