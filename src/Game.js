@@ -65,6 +65,15 @@ const telas = {
             if(this.frame % 150 === 0){
                 obstaculos.spaw()
             }
+            if(game.pontos > game.record){
+                game.medalha = 'gold'
+            }
+            if(game.pontos > game.record / 2){
+                game.medalha = 'silver'
+            }
+            if(game.pontos > game.record / 4){
+                game.medalha = 'cooper'
+            }
             this.frame++
             bird.att()
             this.render()
