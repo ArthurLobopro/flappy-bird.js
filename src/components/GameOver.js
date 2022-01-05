@@ -3,19 +3,19 @@ import { canvas, ctx, sprites } from "./render.js";
 const medalhas = {
     width: 44,
     height: 44,
-    iron:{
+    iron: {
         sx: 0,
         sy: 78
     },
-    gold:{
+    gold: {
         sx: 0,
         sy: 124
     },
     silver: {
         sx: 48,
-        sy:78
+        sy: 78
     },
-    cooper:{
+    cooper: {
         sx: 48,
         sy: 124
     }
@@ -29,11 +29,11 @@ const gameOver = {
     sx: 133,
     y: 65,
     x: null,
-    draw(){
+    draw() {
         ctx.drawImage(
             sprites, //Imagem
             this.sx, this.sy, //Posição do Sprite atual
-            this.width,this.height, // Recorte feito no Sprite
+            this.width, this.height, // Recorte feito no Sprite
             this.x, this.y, // Posição no canvas
             this.width, this.height // Largura e altura no canvas
         )
@@ -41,12 +41,12 @@ const gameOver = {
 }
 const placar = {
     formatPontos: txt => String(txt).padStart(3, '0'),
-    draw({pontos,record, medalha}){
+    draw({ pontos, record, medalha }) {
         this.drawPoints(pontos)
         this.drawRecord(record)
         this.drawMedalha(medalha)
     },
-    drawRecord(record){
+    drawRecord(record) {
         ctx.font = '27px arial'
         ctx.fillStyle = 'black'
         ctx.textAlign = 'right'
@@ -55,7 +55,7 @@ const placar = {
         const x = gameOver.x + gameOver.width - 20
         ctx.fillText(this.formatPontos(record), x, y)
     },
-    drawPoints(pontos){
+    drawPoints(pontos) {
         ctx.font = '27px arial'
         ctx.fillStyle = 'black'
         ctx.textAlign = 'right'
@@ -64,7 +64,7 @@ const placar = {
         const x = gameOver.x + gameOver.width - 20
         ctx.fillText(this.formatPontos(pontos), x, y)
     },
-    drawMedalha(type){
+    drawMedalha(type) {
         const x = gameOver.x + 26
         const y = gameOver.y + 88
         const { sx, sy } = medalhas[type]
@@ -78,6 +78,6 @@ const placar = {
         )
     }
 }
-gameOver.x = canvas.width /2 - gameOver.width / 2
+gameOver.x = canvas.width / 2 - gameOver.width / 2
 
-export {placar, gameOver}
+export { placar, gameOver }

@@ -11,40 +11,40 @@ const bird = {
     x: 0,
     y: 0,
     vel: 0,
-    sprites:[
+    sprites: [
         {
-            sx:0,
-            sy:0,
+            sx: 0,
+            sy: 0,
         },
         {
-            sx:0,
-            sy:26
+            sx: 0,
+            sy: 26
         },
         {
-            sx:0,
-            sy:52,
+            sx: 0,
+            sy: 52,
         }
     ],
-    att(){
+    att() {
         this.y += (this.vel + this.gravidade)
         this.vel += this.gravidade
     },
-    draw(){
+    draw() {
         ctx.drawImage(
             sprites, //Imagem
             this.csx, this.csy, //Posição do Sprite atual
-            this.width,this.height, // Recorte feito no Sprite
-            this.x,this.y, // Posição no canvas
+            this.width, this.height, // Recorte feito no Sprite
+            this.x, this.y, // Posição no canvas
             this.width, this.height // Largura e altura no canvas
         )
     },
-    toggle(){
+    toggle() {
         let nextIndex
 
-        if(this.currentSprite === 1){
-            if(this.lastSprite === 0) nextIndex = 2
-            if(this.lastSprite === 2) nextIndex = 0
-        }else{
+        if (this.currentSprite === 1) {
+            if (this.lastSprite === 0) nextIndex = 2
+            if (this.lastSprite === 2) nextIndex = 0
+        } else {
             nextIndex = 1
         }
 
@@ -54,7 +54,7 @@ const bird = {
         this.csx = this.sprites[nextIndex].sx
         this.csy = this.sprites[nextIndex].sy
     },
-    reset(){
+    reset() {
         this.x = 15
         this.y = 15
         this.vel = 0
