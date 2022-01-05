@@ -109,7 +109,14 @@ const telas = {
         att() {
             this.render()
         },
-        click() {
+        async click() {
+            await (
+                async () => {
+                    return new Promise( resolve => setTimeout(() => {
+                        resolve(true)
+                    }, 500))
+                }
+            )()
             game.reset()
             setTela(telas.initGame)
             bird.reset()
