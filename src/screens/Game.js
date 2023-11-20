@@ -1,5 +1,6 @@
 import { audios } from "../Audio.js"
-import { colisao, game, setTela, telas } from "../Game.js"
+import { colisao, game, setTela } from "../Game.js"
+import { screens } from "../ScreenManager.js"
 import { bird } from "../components/Bird.js"
 import { cenario } from "../components/Cenario.js"
 import { chao } from "../components/Chao.js"
@@ -38,7 +39,7 @@ export class GameScreen extends Screen {
             audios.hit.play()
             this.render()
             obstaculos.reset()
-            return setTela(telas.gameOver)
+            return setTela(screens.gameOver)
         }
 
         if (this.frame % 10 === 0) {

@@ -1,4 +1,5 @@
-import { setTela, telas } from "../Game.js"
+import { setTela } from "../Game.js"
+import { screens } from "../ScreenManager.js"
 import { bird } from "../components/Bird.js"
 import { init } from "../components/Init.js"
 import { Screen } from "./Screen.js"
@@ -11,12 +12,12 @@ export class InitScreen extends Screen {
     ]
 
     render() {
-        telas.mainGame.render()
+        screens.mainGame.render()
         super.render()
     }
 
     click() {
-        setTela(telas.mainGame)
+        setTela(screens.mainGame)
     }
 
     update() {
