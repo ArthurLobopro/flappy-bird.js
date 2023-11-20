@@ -7,3 +7,15 @@ export const screens = {
     initGame: new InitScreen(),
     gameOver: new GameOverScreen()
 }
+
+export class ScreenManager {
+    static __currentScreen
+
+    static get screen() {
+        return this.__currentScreen
+    }
+
+    static setScreen(screen) {
+        this.__currentScreen = screen
+    }
+}

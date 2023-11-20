@@ -1,12 +1,9 @@
 import "./Cheats.js"
-import { screens } from "./ScreenManager.js"
+import { ScreenManager, screens } from "./ScreenManager.js"
 import { bird } from "./components/Bird.js"
 import { chao } from "./components/Chao.js"
 import { obstaculos } from "./components/Obstaculos.js"
 import { sprites } from "./components/render.js"
-
-let telaAtual = {}
-export const setTela = tela => telaAtual = tela
 
 const game = {
     imortal: false,
@@ -23,8 +20,8 @@ const game = {
 game.record = localStorage.record ?? 0
 
 const renderGame = () => {
-    telaAtual.att()
-    telaAtual.render()
+    ScreenManager.screen.update()
+    ScreenManager.screen.render()
     requestAnimationFrame(renderGame)
 }
 
@@ -46,16 +43,16 @@ export const colisao = () => {
         })
 }
 
-setTela(screens.initGame)
+ScreenManager.setScreen(screens.initGame)
 
 sprites.onload = renderGame
 
 window.addEventListener("click", () => {
-    telaAtual.click?.()
+    ScreenManager.screen.click?.()
 })
 
 window.addEventListener("keydown", (event) => {
-    event.key === " " && telaAtual?.click()
+    event.key === " " && ScreenManager.screen?.click()
 })
 
 export { game }

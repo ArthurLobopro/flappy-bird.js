@@ -1,5 +1,4 @@
-import { setTela } from "../Game.js"
-import { screens } from "../ScreenManager.js"
+import { ScreenManager, screens } from "../ScreenManager.js"
 import { bird } from "../components/Bird.js"
 import { init } from "../components/Init.js"
 import { Screen } from "./Screen.js"
@@ -17,7 +16,7 @@ export class InitScreen extends Screen {
     }
 
     click() {
-        setTela(screens.mainGame)
+        ScreenManager.setScreen(screens.mainGame)
     }
 
     update() {
