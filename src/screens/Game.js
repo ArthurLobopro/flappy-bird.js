@@ -68,7 +68,6 @@ export class GameScreen extends Screen {
         this.frame++
         bird.att()
         chao.att()
-        this.render()
     }
 
     click() {

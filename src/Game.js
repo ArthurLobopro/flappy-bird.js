@@ -1,11 +1,11 @@
 import "./Cheats.js"
 import { bird } from "./components/Bird.js"
 import { chao } from "./components/Chao.js"
-import { init } from "./components/Init.js"
 import { obstaculos } from "./components/Obstaculos.js"
 import { sprites } from "./components/render.js"
 import { GameScreen } from "./screens/Game.js"
 import { GameOverScreen } from "./screens/GameOver.js"
+import { InitScreen } from "./screens/Init.js"
 
 let telaAtual = {}
 export const setTela = tela => telaAtual = tela
@@ -26,23 +26,7 @@ game.record = localStorage.record ?? 0
 
 export const telas = {
     mainGame: new GameScreen(),
-    initGame: {
-        frame: 0,
-        render() {
-            telas.mainGame.render()
-            init.draw()
-        },
-        click() {
-            setTela(telas.mainGame)
-        },
-        att() {
-            if (this.frame % 10 === 0) {
-                bird.toggle()
-            }
-            this.render()
-            this.frame++
-        }
-    },
+    initGame: new InitScreen(),
     gameOver: new GameOverScreen()
 }
 
