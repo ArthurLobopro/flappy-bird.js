@@ -1,11 +1,11 @@
 import "./Cheats.js"
 import { bird } from "./components/Bird.js"
 import { chao } from "./components/Chao.js"
-import { gameOver, placar } from "./components/GameOver.js"
 import { init } from "./components/Init.js"
 import { obstaculos } from "./components/Obstaculos.js"
-import { canvas, ctx, sprites } from "./components/render.js"
+import { sprites } from "./components/render.js"
 import { GameScreen } from "./screens/Game.js"
+import { GameOverScreen } from "./screens/GameOver.js"
 
 let telaAtual = {}
 export const setTela = tela => telaAtual = tela
@@ -20,16 +20,6 @@ const game = {
         this.pontos = 0
         this.medalha = 'iron'
     },
-    renderPlacar() {
-        const formatPontos = txt => String(txt).padStart(3, '0')
-        ctx.font = '27px arial'
-        ctx.fillStyle = 'black'
-        ctx.textAlign = 'right'
-        ctx.textBaseline = 'top'
-        const y = 10
-        const x = canvas.width - 10
-        ctx.fillText(formatPontos(this.pontos), x, y)
-    }
 }
 
 game.record = localStorage.record ?? 0
@@ -53,31 +43,12 @@ export const telas = {
             this.frame++
         }
     },
-    gameOver: {
-        render() {
-            gameOver.draw()
-            placar.draw(game)
-        },
-        att() {
-            this.render()
-        },
-        async click() {
-            await (
-                async () => {
-                    return new Promise(resolve => setTimeout(() => {
-                        resolve(true)
-                    }, 500))
-                }
-            )()
-            game.reset()
-            setTela(telas.initGame)
-            bird.reset()
-        }
-    }
+    gameOver: new GameOverScreen()
 }
 
 const renderGame = () => {
     telaAtual.att()
+    telaAtual.render()
     requestAnimationFrame(renderGame)
 }
 

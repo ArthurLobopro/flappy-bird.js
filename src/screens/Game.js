@@ -4,6 +4,7 @@ import { bird } from "../components/Bird.js"
 import { cenario } from "../components/Cenario.js"
 import { chao } from "../components/Chao.js"
 import { obstaculos } from "../components/Obstaculos.js"
+import { canvas, ctx } from "../components/render.js"
 import { Screen } from "./Screen.js"
 
 export class GameScreen extends Screen {
@@ -12,6 +13,18 @@ export class GameScreen extends Screen {
         obstaculos,
         chao,
         bird,
+        {
+            draw() {
+                const formatPontos = txt => String(txt).padStart(3, '0')
+                ctx.font = '27px arial'
+                ctx.fillStyle = 'black'
+                ctx.textAlign = 'right'
+                ctx.textBaseline = 'top'
+                const y = 10
+                const x = canvas.width - 10
+                ctx.fillText(formatPontos(game.pontos), x, y)
+            }
+        }
     ]
 
     frame = 0
@@ -56,7 +69,6 @@ export class GameScreen extends Screen {
         bird.att()
         chao.att()
         this.render()
-        game.renderPlacar()
     }
 
     click() {

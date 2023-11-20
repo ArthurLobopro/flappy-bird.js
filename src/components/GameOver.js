@@ -1,3 +1,4 @@
+import { game } from "../Game.js"
 import { canvas, ctx, sprites } from "./render.js"
 
 const medalhas = {
@@ -42,7 +43,8 @@ const gameOver = {
 
 const placar = {
     formatPontos: txt => String(txt).padStart(3, '0'),
-    draw({ pontos, record, medalha }) {
+    draw() {
+        const { pontos, record, medalha } = game
         this.drawPoints(pontos)
         this.drawRecord(record)
         this.drawMedalha(medalha)
@@ -56,7 +58,8 @@ const placar = {
         const x = gameOver.x + gameOver.width - 20
         ctx.fillText(this.formatPontos(record), x, y)
     },
-    drawPoints(pontos) {
+    drawPoints() {
+        const { pontos } = game
         ctx.font = '27px arial'
         ctx.fillStyle = 'black'
         ctx.textAlign = 'right'
