@@ -58,8 +58,12 @@ setTela(telas.initGame)
 
 sprites.onload = renderGame
 
-window.onclick = () => {
+window.addEventListener("click", () => {
     telaAtual.click?.()
-}
+})
+
+window.addEventListener("keydown", (event) => {
+    event.key === " " && telaAtual?.click()
+})
 
 export { game }
