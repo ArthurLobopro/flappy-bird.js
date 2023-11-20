@@ -1,12 +1,12 @@
-import { canvas, ctx, sprites } from "./components/render.js";
-import bird from "./components/Bird.js";
-import chao from "./components/Chao.js";
-import cenario from "./components/Cenario.js";
-import init from "./components/Init.js";
-import { gameOver, placar } from "./components/GameOver.js"
-import audios from "./Audio.js"
-import obstaculos from "./components/Obstaculos.js"
+import { audios } from "./Audio.js"
 import "./Cheats.js"
+import bird from "./components/Bird.js"
+import cenario from "./components/Cenario.js"
+import chao from "./components/Chao.js"
+import { gameOver, placar } from "./components/GameOver.js"
+import init from "./components/Init.js"
+import obstaculos from "./components/Obstaculos.js"
+import { canvas, ctx, sprites } from "./components/render.js"
 
 let telaAtual = {}
 const setTela = tela => telaAtual = tela
@@ -112,7 +112,7 @@ const telas = {
         async click() {
             await (
                 async () => {
-                    return new Promise( resolve => setTimeout(() => {
+                    return new Promise(resolve => setTimeout(() => {
                         resolve(true)
                     }, 500))
                 }

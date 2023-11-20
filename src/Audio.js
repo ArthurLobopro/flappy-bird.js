@@ -1,9 +1,10 @@
-const audios = {}
+function loadAudio(src) {
+    const audio = new Audio()
+    audio.src = src
+    return audio
+}
 
-audios.hit = new Audio()
-audios.hit.src = "./assets/sons/hit.wav"
-
-audios.pulo = new Audio()
-audios.pulo.src = "./assets/sons/pulo.wav"
-
-export default audios
+export const audios = {
+    hit: loadAudio("./assets/sons/hit.wav"),
+    pulo: loadAudio("./assets/sons/pulo.wav")
+}
