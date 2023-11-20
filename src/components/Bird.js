@@ -1,16 +1,14 @@
 import { ctx, sprites } from "./render.js"
 
 export const bird = {
-    csx: 0,
-    csy: 0,
+    frame: 0,
     width: 33,
     height: 24,
-    gravidade: 0.25,
+    gravity: 0.25,
     currentSprite: 0,
-    lastSprite: 1,
     x: 0,
     y: 0,
-    vel: 0,
+    fallVelocity: 0,
     sprites: [
         {
             sx: 0,
@@ -25,39 +23,41 @@ export const bird = {
             sy: 52,
         }
     ],
-    att() {
-        this.y += (this.vel + this.gravidade)
-        this.vel += this.gravidade
+
+    update() {
+        this.y += (this.fallVelocity + this.gravity)
+        this.fallVelocity += this.gravity
+        this.frame++
+
+        if (this.frame % 10 === 0) {
+            this.toggle()
+        }
     },
+
     draw() {
+        const { sx, sy } = this.sprites[this.currentSprite]
+        const { width, height, x, y } = this
+
         ctx.drawImage(
             sprites, //Imagem
-            this.csx, this.csy, //Posição do Sprite atual
-            this.width, this.height, // Recorte feito no Sprite
-            this.x, this.y, // Posição no canvas
-            this.width, this.height // Largura e altura no canvas
+            sx, sy, //Posição do Sprite atual
+            width, height, // Recorte feito no Sprite
+            x, y, // Posição no canvas
+            width, height // Largura e altura no canvas
         )
     },
+
     toggle() {
-        let nextIndex
-
-        if (this.currentSprite === 1) {
-            if (this.lastSprite === 0) nextIndex = 2
-            if (this.lastSprite === 2) nextIndex = 0
-        } else {
-            nextIndex = 1
+        this.currentSprite++
+        if (this.currentSprite === 3) {
+            this.currentSprite = 0
         }
-
-        this.lastSprite = this.currentSprite
-        this.currentSprite = nextIndex
-
-        this.csx = this.sprites[nextIndex].sx
-        this.csy = this.sprites[nextIndex].sy
     },
+
     reset() {
         this.x = 15
         this.y = 15
-        this.vel = 0
+        this.fallVelocity = 0
     }
 }
 bird.reset()

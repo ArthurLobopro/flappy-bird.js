@@ -42,10 +42,6 @@ export class GameScreen extends Screen {
             return ScreenManager.setScreen(screens.gameOver)
         }
 
-        if (this.frame % 10 === 0) {
-            bird.toggle()
-        }
-
         if (this.frame % 25 === 0) {
             game.pontos++
         }
@@ -67,12 +63,12 @@ export class GameScreen extends Screen {
         }
 
         this.frame++
-        bird.att()
+        bird.update()
         chao.att()
     }
 
     click() {
         audios.pulo.play()
-        bird.vel = - 5
+        bird.fallVelocity = - 5
     }
 }
