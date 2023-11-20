@@ -1,6 +1,6 @@
-import { ctx, sprites, canvas } from "./render.js"
+import { canvas, ctx, sprites } from "./render.js"
 
-const init = {
+export const init = {
     sy: 0,
     sx: 134,
     width: 176,
@@ -21,5 +21,3 @@ const init = {
     ; (function () {
         init.x = canvas.width / 2 - init.width / 2
     })()
-
-export default init

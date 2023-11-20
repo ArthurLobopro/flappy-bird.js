@@ -1,6 +1,6 @@
 import { canvas, ctx, sprites } from "./render.js"
 
-const chao = {
+export const chao = {
     width: 221,
     height: 112,
     sx: 0,
@@ -31,5 +31,3 @@ const chao = {
     }
 }
 chao.y = (canvas.height - chao.height)
-
-export default chao

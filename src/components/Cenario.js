@@ -1,6 +1,6 @@
-import { canvas, ctx, sprites } from "./render.js";
+import { canvas, ctx, sprites } from "./render.js"
 
-const cenario = {
+export const cenario = {
     width: 276,
     height: 204,
     sy: 0,
@@ -28,4 +28,3 @@ const cenario = {
     }
 
 }
-export default cenario

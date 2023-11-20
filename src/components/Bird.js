@@ -1,6 +1,6 @@
 import { ctx, sprites } from "./render.js"
 
-const bird = {
+export const bird = {
     csx: 0,
     csy: 0,
     width: 33,
@@ -61,5 +61,3 @@ const bird = {
     }
 }
 bird.reset()
-
-export default bird

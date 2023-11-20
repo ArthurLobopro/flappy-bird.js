@@ -1,8 +1,8 @@
-import { sprites, canvas, ctx } from "./render.js";
+import { canvas, ctx, sprites } from "./render.js"
 
 const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
-const obstaculos = {
+export const obstaculos = {
     width: 52,
     height: 400,
     espaco: 100,
@@ -61,4 +61,3 @@ const obstaculos = {
     }
 
 }
-export default obstaculos

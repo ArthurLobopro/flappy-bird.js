@@ -1,4 +1,4 @@
-import { canvas, ctx, sprites } from "./render.js";
+import { canvas, ctx, sprites } from "./render.js"
 
 const medalhas = {
     width: 44,
@@ -39,6 +39,7 @@ const gameOver = {
         )
     }
 }
+
 const placar = {
     formatPontos: txt => String(txt).padStart(3, '0'),
     draw({ pontos, record, medalha }) {
@@ -80,4 +81,4 @@ const placar = {
 }
 gameOver.x = canvas.width / 2 - gameOver.width / 2
 
-export { placar, gameOver }
+export { gameOver, placar }

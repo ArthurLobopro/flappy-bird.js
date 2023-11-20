@@ -1,15 +1,14 @@
-import { audios } from "./Audio.js"
 import "./Cheats.js"
-import bird from "./components/Bird.js"
-import cenario from "./components/Cenario.js"
-import chao from "./components/Chao.js"
+import { bird } from "./components/Bird.js"
+import { chao } from "./components/Chao.js"
 import { gameOver, placar } from "./components/GameOver.js"
-import init from "./components/Init.js"
-import obstaculos from "./components/Obstaculos.js"
+import { init } from "./components/Init.js"
+import { obstaculos } from "./components/Obstaculos.js"
 import { canvas, ctx, sprites } from "./components/render.js"
+import { GameScreen } from "./screens/Game.js"
 
 let telaAtual = {}
-const setTela = tela => telaAtual = tela
+export const setTela = tela => telaAtual = tela
 
 const game = {
     imortal: false,
@@ -35,55 +34,8 @@ const game = {
 
 game.record = localStorage.record ?? 0
 
-const telas = {
-    mainGame: {
-        frame: 0,
-        render() {
-            cenario.draw()
-            obstaculos.draw()
-            chao.draw()
-            chao.att()
-            bird.draw()
-        },
-        att() {
-            if (colisao()) {
-                if (game.pontos > game.record) {
-                    game.record = game.pontos
-                    localStorage.record = game.pontos
-                }
-                audios.hit.play()
-                this.render()
-                obstaculos.reset()
-                return setTela(telas.gameOver)
-            }
-            if (this.frame % 10 === 0) {
-                bird.toggle()
-            }
-            if (this.frame % 25 === 0) {
-                game.pontos++
-            }
-            if (this.frame % 150 === 0) {
-                obstaculos.spaw()
-            }
-            if (game.pontos > game.record) {
-                game.medalha = 'gold'
-            }
-            if (game.pontos > game.record / 2) {
-                game.medalha = 'silver'
-            }
-            if (game.pontos > game.record / 4) {
-                game.medalha = 'cooper'
-            }
-            this.frame++
-            bird.att()
-            this.render()
-            game.renderPlacar()
-        },
-        click() {
-            audios.pulo.play()
-            bird.vel = - 5
-        }
-    },
+export const telas = {
+    mainGame: new GameScreen(),
     initGame: {
         frame: 0,
         render() {
@@ -129,7 +81,7 @@ const renderGame = () => {
     requestAnimationFrame(renderGame)
 }
 
-const colisao = () => {
+export const colisao = () => {
     if (game.imortal) return false
 
     if (bird.y + bird.height + 1 >= chao.y) {
