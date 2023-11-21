@@ -1,23 +1,29 @@
+import { Component } from "./Component.js"
 import { canvas, ctx, sprites } from "./render.js"
 
-export const init = {
-    sy: 0,
-    sx: 134,
-    width: 176,
-    height: 152,
-    x: null,
-    y: 65,
+class InitComponent extends Component {
+    sy = 0
+    sx = 134
+    width = 176
+    height = 152
+    y = 65
+
+    constructor() {
+        super()
+        this.x = canvas.width / 2 - this.width / 2
+    }
+
     draw() {
+        const { sx, sy, width, height, x, y } = this
+
         ctx.drawImage(
-            sprites, //Imagem
-            this.sx, this.sy, //Posição do Sprite atual
-            this.width, this.height, // Recorte feito no Sprite
-            this.x, this.y, // Posição no canvas
-            this.width, this.height // Largura e altura no canvas
+            sprites,
+            sx, sy,
+            width, height,
+            x, y,
+            width, height
         )
     }
 }
 
-    ; (function () {
-        init.x = canvas.width / 2 - init.width / 2
-    })()
+export const init = new InitComponent()
