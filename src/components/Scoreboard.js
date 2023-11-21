@@ -19,7 +19,7 @@ class ScoreboardComponent extends Component {
         const { pontos, record, medalha } = game
         this.drawPoints(pontos)
         this.drawRecord(record)
-        this.drawMedalha(medalha)
+        this.drawBadge(medalha)
     }
 
     drawRecord(record) {
@@ -39,7 +39,7 @@ class ScoreboardComponent extends Component {
         ctx.fillText(this.formatPoints(pontos), x, y)
     }
 
-    drawMedalha(type) {
+    drawBadge(type) {
         const { width, height } = badges
         const { sx, sy } = badges.types[type]
 
