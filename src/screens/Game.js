@@ -63,7 +63,7 @@ export class GameScreen extends Screen {
         }
 
         this.frame++
-        this.components.forEach(component => component.update?.())
+        super.update()
     }
 
     click() {
