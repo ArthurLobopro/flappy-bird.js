@@ -2,15 +2,15 @@ import { audios } from "../Audio.js"
 import { colisao, game } from "../Game.js"
 import { ScreenManager, screens } from "../ScreenManager.js"
 import { bird } from "../components/Bird.js"
-import { cenario } from "../components/Cenario.js"
 import { floor } from "../components/Floor.js"
 import { obstaculos } from "../components/Obstaculos.js"
+import { scenario } from "../components/Scenario.js"
 import { canvas, ctx } from "../components/render.js"
 import { Screen } from "./Screen.js"
 
 export class GameScreen extends Screen {
     components = [
-        cenario,
+        scenario,
         obstaculos,
         floor,
         bird,
@@ -63,8 +63,7 @@ export class GameScreen extends Screen {
         }
 
         this.frame++
-        bird.update()
-        floor.update()
+        this.components.forEach(component => component.update?.())
     }
 
     click() {
