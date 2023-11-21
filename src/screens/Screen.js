@@ -6,7 +6,7 @@ export class Screen {
         this.components.forEach(component => component.draw())
     }
 
-    update() { }
-
-    att() { this.update() }
+    update() {
+        this.components.forEach(component => component?.update?.())
+    }
 }

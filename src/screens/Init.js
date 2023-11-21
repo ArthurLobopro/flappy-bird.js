@@ -7,8 +7,6 @@ import { scenario } from "../components/Scenario.js"
 import { Screen } from "./Screen.js"
 
 export class InitScreen extends Screen {
-    frame = 0
-
     components = [
         scenario,
         init,
@@ -21,11 +19,6 @@ export class InitScreen extends Screen {
     }
 
     update() {
-        // if (this.frame % 10 === 0) {
-        //     bird.toggle()
-        // }
-
-        this.frame++
         this.components.forEach(component => component?.update?.())
     }
 
