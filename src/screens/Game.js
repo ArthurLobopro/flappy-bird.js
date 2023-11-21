@@ -3,7 +3,7 @@ import { colisao, game } from "../Game.js"
 import { ScreenManager, screens } from "../ScreenManager.js"
 import { bird } from "../components/Bird.js"
 import { cenario } from "../components/Cenario.js"
-import { chao } from "../components/Chao.js"
+import { floor } from "../components/Floor.js"
 import { obstaculos } from "../components/Obstaculos.js"
 import { canvas, ctx } from "../components/render.js"
 import { Screen } from "./Screen.js"
@@ -12,7 +12,7 @@ export class GameScreen extends Screen {
     components = [
         cenario,
         obstaculos,
-        chao,
+        floor,
         bird,
         {
             draw() {
@@ -64,7 +64,7 @@ export class GameScreen extends Screen {
 
         this.frame++
         bird.update()
-        chao.att()
+        floor.update()
     }
 
     click() {

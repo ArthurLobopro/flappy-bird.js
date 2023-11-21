@@ -1,7 +1,7 @@
 import "./Cheats.js"
 import { ScreenManager, screens } from "./ScreenManager.js"
 import { bird } from "./components/Bird.js"
-import { chao } from "./components/Chao.js"
+import { floor } from "./components/Floor.js"
 import { obstaculos } from "./components/Obstaculos.js"
 import { sprites } from "./components/render.js"
 
@@ -28,7 +28,7 @@ const renderGame = () => {
 export const colisao = () => {
     if (game.imortal) return false
 
-    if (bird.y + bird.height + 1 >= chao.y) {
+    if (bird.y + bird.height + 1 >= floor.y) {
         return true
     }
 
