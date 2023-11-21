@@ -18,10 +18,6 @@ export class InitScreen extends Screen {
         ScreenManager.setScreen(screens.mainGame)
     }
 
-    update() {
-        this.components.forEach(component => component?.update?.())
-    }
-
     onFocus() {
         game.state = "inactive"
     }

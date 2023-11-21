@@ -1,87 +1,30 @@
 import { game } from "../Game.js"
+import { Component } from "./Component.js"
 import { canvas, ctx, sprites } from "./render.js"
 
-const medalhas = {
-    width: 44,
-    height: 44,
-    iron: {
-        sx: 0,
-        sy: 78
-    },
-    gold: {
-        sx: 0,
-        sy: 124
-    },
-    silver: {
-        sx: 48,
-        sy: 78
-    },
-    cooper: {
-        sx: 48,
-        sy: 124
+export class GameOverComponent extends Component {
+    width = 228
+    height = 205
+    sy = 152
+    sx = 133
+    y = 65
+
+    constructor() {
+        super()
+        this.x = canvas.width / 2 - this.width / 2
     }
 
-}
-
-const gameOver = {
-    width: 228,
-    height: 205,
-    sy: 152,
-    sx: 133,
-    y: 65,
-    x: null,
     draw() {
+        const { sx, sy, width, height, x, y } = this
+
         ctx.drawImage(
-            sprites, //Imagem
-            this.sx, this.sy, //Posição do Sprite atual
-            this.width, this.height, // Recorte feito no Sprite
-            this.x, this.y, // Posição no canvas
-            this.width, this.height // Largura e altura no canvas
+            sprites,
+            sx, sy,
+            width, height,
+            x, y,
+            width, height
         )
     }
 }
 
-const placar = {
-    formatPontos: txt => String(txt).padStart(3, '0'),
-    draw() {
-        const { pontos, record, medalha } = game
-        this.drawPoints(pontos)
-        this.drawRecord(record)
-        this.drawMedalha(medalha)
-    },
-    drawRecord(record) {
-        ctx.font = '27px arial'
-        ctx.fillStyle = 'black'
-        ctx.textAlign = 'right'
-        ctx.textBaseline = "alphabetic"
-        const y = gameOver.y + 100 + 40
-        const x = gameOver.x + gameOver.width - 20
-        ctx.fillText(this.formatPontos(record), x, y)
-    },
-    drawPoints() {
-        const { pontos } = game
-        ctx.font = '27px arial'
-        ctx.fillStyle = 'black'
-        ctx.textAlign = 'right'
-        ctx.textBaseline = "alphabetic"
-        const y = gameOver.y + 100
-        const x = gameOver.x + gameOver.width - 20
-        ctx.fillText(this.formatPontos(pontos), x, y)
-    },
-    drawMedalha(type) {
-        const x = gameOver.x + 26
-        const y = gameOver.y + 88
-        const { sx, sy } = medalhas[type]
-        const { width, height } = medalhas
-        ctx.drawImage(
-            sprites, //Imagem
-            sx, sy, //Posição do Sprite atual
-            width, height, // Recorte feito no Sprite
-            x, y, // Posição no canvas
-            width, height // Largura e altura no canvas
-        )
-    }
-}
-gameOver.x = canvas.width / 2 - gameOver.width / 2
-
-export { gameOver, placar }
+export const gameOver = new GameOverComponent()
