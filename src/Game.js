@@ -2,7 +2,7 @@ import "./Cheats.js"
 import { ScreenManager, screens } from "./ScreenManager.js"
 import { bird } from "./components/Bird.js"
 import { floor } from "./components/Floor.js"
-import { obstaculos } from "./components/Obstaculos.js"
+import { obstacles } from "./components/Obstacles.js"
 import { sprites } from "./components/render.js"
 
 const game = {
@@ -35,11 +35,11 @@ export const colisao = () => {
 
     if (bird.y < 0) return true
 
-    return obstaculos.ativos
-        .filter(({ x }) => x + obstaculos.width > bird.x)
+    return obstacles.activeObstacles
+        .filter(({ x }) => x + obstacles.width > bird.x)
         .some(({ x, y }) => {
-            const bateuEmCima = bird.y <= y + obstaculos.height
-            const bateuEmBaixo = bird.y + bird.height >= y + obstaculos.height + obstaculos.espaco
+            const bateuEmCima = bird.y <= y + obstacles.height
+            const bateuEmBaixo = bird.y + bird.height >= y + obstacles.height + obstacles.space
             return bird.x + bird.width >= x && (bateuEmCima || bateuEmBaixo)
         })
 }

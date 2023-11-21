@@ -3,7 +3,7 @@ import { colisao, game } from "../Game.js"
 import { ScreenManager, screens } from "../ScreenManager.js"
 import { bird } from "../components/Bird.js"
 import { floor } from "../components/Floor.js"
-import { obstaculos } from "../components/Obstaculos.js"
+import { obstacles } from "../components/Obstacles.js"
 import { scenario } from "../components/Scenario.js"
 import { canvas, ctx } from "../components/render.js"
 import { Screen } from "./Screen.js"
@@ -11,7 +11,7 @@ import { Screen } from "./Screen.js"
 export class GameScreen extends Screen {
     components = [
         scenario,
-        obstaculos,
+        obstacles,
         floor,
         bird,
         {
@@ -38,7 +38,7 @@ export class GameScreen extends Screen {
             }
             audios.hit.play()
             this.render()
-            obstaculos.reset()
+            obstacles.reset()
             return ScreenManager.setScreen(screens.gameOver)
         }
 
@@ -47,7 +47,7 @@ export class GameScreen extends Screen {
         }
 
         if (this.frame % 150 === 0) {
-            obstaculos.spaw()
+            obstacles.spaw()
         }
 
         if (game.pontos > game.record) {
