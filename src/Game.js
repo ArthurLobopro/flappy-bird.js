@@ -10,6 +10,7 @@ const game = {
     pontos: 0,
     record: 0,
     medalha: 'iron',
+    state: "inactive",
     reset() {
         this.imortal = false
         this.pontos = 0

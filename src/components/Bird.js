@@ -1,3 +1,4 @@
+import { game } from "../Game.js"
 import { Component } from "./Component.js"
 import { ctx, sprites } from "./render.js"
 
@@ -33,8 +34,11 @@ class BirdComponent extends Component {
     }
 
     update() {
-        this.y += (this.fallVelocity + this.gravity)
-        this.fallVelocity += this.gravity
+        if (game.state !== "inactive") {
+            this.y += (this.fallVelocity + this.gravity)
+            this.fallVelocity += this.gravity
+        }
+
         this.frame++
 
         if (this.frame % 10 === 0) {

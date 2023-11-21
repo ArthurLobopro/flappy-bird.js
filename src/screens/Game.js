@@ -70,4 +70,12 @@ export class GameScreen extends Screen {
         audios.pulo.play()
         bird.fallVelocity = - 5
     }
+
+    onFocus() {
+        game.state = "active"
+    }
+
+    onBlur() {
+        game.state = "inactive"
+    }
 }

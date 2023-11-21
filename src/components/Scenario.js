@@ -1,6 +1,7 @@
+import { Component } from "./Component.js"
 import { canvas, ctx, sprites } from "./render.js"
 
-class ScenarioComponent {
+class ScenarioComponent extends Component {
     width = 276
     height = 204
     sy = 0
@@ -10,22 +11,19 @@ class ScenarioComponent {
         ctx.fillStyle = '#70C5CE'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-        const { sx, sy, width, height, x } = this
-
         ctx.drawImage(
             sprites, //Imagem
-            sx, sy, //Posição do Sprite atual
-            width, height, // Recorte feito no Sprite
-            x, (canvas.height - height), // Posição no canvas
-            width, height // Largura e altura no canvas
+            this.sx, this.sy, //Posição do Sprite atual
+            this.width, this.height, // Recorte feito no Sprite
+            this.x, (canvas.height - this.height), // Posição no canvas
+            this.width, this.height // Largura e altura no canvas
         )
-
         ctx.drawImage(
             sprites,
-            sx, sy,
-            width, height,
-            (x + width), (canvas.height - height),
-            width, height
+            this.sx, this.sy,
+            this.width, this.height,
+            (this.x + this.width), (canvas.height - this.height),
+            this.width, this.height
         )
     }
 }

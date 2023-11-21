@@ -16,6 +16,8 @@ export class ScreenManager {
     }
 
     static setScreen(screen) {
+        this.__currentScreen?.onBlur?.()
         this.__currentScreen = screen
+        this.__currentScreen?.onFocus?.()
     }
 }
