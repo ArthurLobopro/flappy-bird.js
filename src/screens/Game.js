@@ -1,5 +1,5 @@
 import { audios } from "../Audio.js"
-import { colisao, game } from "../Game.js"
+import { game } from "../Game.js"
 import { ScreenManager, screens } from "../ScreenManager.js"
 import { bird } from "../components/Bird.js"
 import { floor } from "../components/Floor.js"
@@ -31,7 +31,7 @@ export class GameScreen extends Screen {
     frame = 0
 
     update() {
-        if (colisao()) {
+        if (game.colision()) {
             if (game.pontos > game.record) {
                 game.record = game.pontos
                 localStorage.record = game.pontos
